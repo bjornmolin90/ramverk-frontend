@@ -1,4 +1,10 @@
 .toolbar {
     width: 100%;
-    background-color: red;
+    background-color: #f6f6f6;
+}
+
+.saveIcon {
+    font-size: 40px;
+    margin: 10px;
+    cursor: pointer;
 }
