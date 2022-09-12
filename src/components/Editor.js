@@ -1,9 +1,8 @@
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
-import "../styles/Editor.css"
+import "../styles/Editor.css";
 
 function Editor(props) {
-  
 
   return <ReactQuill theme="snow" value={props.value} onChange={props.setValue} modules={modules} formats={formats} />;
 }
