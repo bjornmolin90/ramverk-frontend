@@ -1,4 +1,5 @@
-const url = "https://js-ramverk-editor-bjmo21.azurewebsites.net"
+const url = "https://js-ramverk-editor-bjmo21.azurewebsites.net";
+/*http://localhost:1337"*/
 
 const docs = {
     getAllDocs: async function getAllDocs() {
@@ -30,6 +31,8 @@ const docs = {
         });
 
         const result = await response.json();
+
+        console.log(result.data);
 
         return result.data;
     }
