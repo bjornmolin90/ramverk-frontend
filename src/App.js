@@ -26,7 +26,7 @@ function App() {
     }, [currentDoc]);
 
     useEffect(() => {
-        setSocket(io("http://localhost:1337"));
+        setSocket(io("https://js-ramverk-editor-bjmo21.azurewebsites.net"));
 
         return () => {
             if (socket) {
