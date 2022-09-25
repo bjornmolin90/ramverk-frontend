@@ -4,7 +4,7 @@ import 'react-quill/dist/quill.snow.css';
 import "../styles/Editor.css";
 
 function Editor(props) {
-    return <ReactQuill theme="snow" value={props.value}
+    return <ReactQuill preserveWhitespace theme="snow" value={props.value}
         onChange={props.setValue} modules={modules} formats={formats} />;
 }
 

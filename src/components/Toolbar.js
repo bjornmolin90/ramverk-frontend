@@ -8,10 +8,13 @@ import docsModel from '../models/docs';
 function Toolbar( props ) {
     const [docName, setDocName] = useState("");
 
-    function fetchDoc(event) {
-        const doc = props.docs.filter(doc => doc.name === event.target.value);
+    async function fetchDoc(event) {
+        let docs = await docsModel.getAllDocs();
+
+        const doc = docs.filter(doc => doc.name === event.target.value);
 
         props.setCurrentDoc(doc);
+
         props.setValue(doc[0].content);
         setDocName(doc[0].name);
     }
@@ -27,10 +30,10 @@ function Toolbar( props ) {
 
         if (typeof result === 'undefined') {
             doc = await docsModel.saveDoc({content: props.value, name: docName});
+            props.setCurrentDoc(doc);
         } else {
             doc = await docsModel.updateDoc({content: props.value, name: docName, _id: result._id});
         }
-        props.setCurrentDoc(doc);
     }
 
     function create() {
