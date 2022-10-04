@@ -1,3 +1,7 @@
 .ql-container {
     height: 250px !important;
 }
+
+.quill {
+    background-color: white;
+}

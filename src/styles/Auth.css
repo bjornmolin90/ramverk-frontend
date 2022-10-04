@@ -1,0 +1,43 @@
+body {
+    width: 100%;
+    background-color: azure;
+}
+
+.authForm h1 {
+    padding-bottom: 20px;
+    font-family: Roboto;
+    font-size: 38px;
+    color: #2b2d2f;
+}
+
+.authForm {
+    padding-top: 100px;
+    margin: auto;
+    width: 50%;
+    text-align: center;
+}
+
+.inputField {
+    width: 60%;
+    padding: 12px 20px;
+    margin: 12px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+  }
+
+  .buttonDiv {
+    margin-top: 20px;
+  }
+
+  .button {
+    width: 20%;
+    background-color: #4eb5f1;
+    color: white;
+    padding: 14px 50px;
+    margin: 8px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }

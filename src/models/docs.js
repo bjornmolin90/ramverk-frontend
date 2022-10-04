@@ -1,5 +1,5 @@
-const url = "https://js-ramverk-editor-bjmo21.azurewebsites.net";
-/* const url = "http://localhost:1337"; */
+/* const url = "https://js-ramverk-editor-bjmo21.azurewebsites.net"; */
+const url = "http://localhost:1337";
 
 const docs = {
     getAllDocs: async function getAllDocs() {
@@ -20,8 +20,6 @@ const docs = {
 
         const result = await response.json();
 
-        console.log(result.data);
-
         return result.data;
     },
     updateDoc: async function updateDoc(newDoc) {
@@ -35,9 +33,16 @@ const docs = {
 
         const result = await response.json();
 
-        console.log(result.data);
-
         return result.data;
+    },
+    addUser: async function addUser(newUser) {
+        await fetch(`${url}/docs/user`, {
+            body: JSON.stringify(newUser),
+            headers: {
+                'content-type': 'application/json'
+            },
+            method: 'PUT'
+        });
     }
 };
 
