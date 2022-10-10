@@ -52,7 +52,6 @@ function Toolbar( props ) {
         setDocName("");
         props.setCurrentDoc({});
     }
-
     return (
         <div className="toolbar">
             <div className="create">
@@ -86,6 +85,12 @@ function Toolbar( props ) {
                         key={index}>{user.email}</option>)}
                 </select>
             </div>
+            <span>
+                Permitted users: {
+                    props.permittedUsers instanceof Object ?
+                        props.permittedUsers.doc.users.join(", ") : "None"
+                }
+            </span>
         </div>
     );
 }

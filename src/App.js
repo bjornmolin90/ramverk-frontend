@@ -5,6 +5,7 @@ import Toolbar from './components/Toolbar';
 import Auth from './components/Auth';
 import docsModel from './models/docs';
 import authModel from './models/auth';
+import graphqlModel from './models/graphql';
 import { io } from "socket.io-client";
 
 let sendToSocket = false;
@@ -23,11 +24,18 @@ function App() {
     const [socket, setSocket] = useState(null);
     const [token, setToken] = useState(null);
     const [user, setUser] = useState({});
+    const [permittedUsers, setPermittedUsers] = useState(null);
 
     useEffect(() => {
         (async () => {
             const allDocs = await docsModel.getAllDocs();
             const allUsers = await authModel.getAllUsers();
+
+            if (currentDoc instanceof Array) {
+                const docUsers = await graphqlModel.docUsers(currentDoc[0].name);
+
+                setPermittedUsers(docUsers);
+            }
 
             setDocs(allDocs);
             setUsers(allUsers);
@@ -86,7 +94,8 @@ function App() {
             {token ?
                 <>
                     <Toolbar value={value} setValue={setValue} currentDoc={currentDoc}
-                        setCurrentDoc={setCurrentDoc} docs={docs} users={users} user={user} />
+                        setCurrentDoc={setCurrentDoc} docs={docs} users={users} user={user}
+                        permittedUsers={permittedUsers} />
                     <Editor value={value} setValue={setValue}/>
                 </>
                 :
