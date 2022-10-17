@@ -1,6 +1,7 @@
 import './App.css';
 import React, { useState, useEffect } from 'react';
 import Editor from './components/Editor';
+import CodeEditor from './components/CodeEditor';
 import Toolbar from './components/Toolbar';
 import Auth from './components/Auth';
 import docsModel from './models/docs';
@@ -9,8 +10,8 @@ import graphqlModel from './models/graphql';
 import { io } from "socket.io-client";
 
 let sendToSocket = false;
-const url = "https://js-ramverk-editor-bjmo21.azurewebsites.net";
-/* const url = "http://localhost:1337"; */
+/* const url = "https://js-ramverk-editor-bjmo21.azurewebsites.net"; */
+const url = "http://localhost:1337";
 
 function changeSendToSocket(value) {
     sendToSocket = value;
@@ -25,6 +26,7 @@ function App() {
     const [token, setToken] = useState(null);
     const [user, setUser] = useState({});
     const [permittedUsers, setPermittedUsers] = useState(null);
+    const [textEditor, setTextEditor] = useState(true);
 
     useEffect(() => {
         (async () => {
@@ -95,8 +97,12 @@ function App() {
                 <>
                     <Toolbar value={value} setValue={setValue} currentDoc={currentDoc}
                         setCurrentDoc={setCurrentDoc} docs={docs} users={users} user={user}
-                        permittedUsers={permittedUsers} />
-                    <Editor value={value} setValue={setValue}/>
+                        permittedUsers={permittedUsers} textEditor={textEditor}
+                        setTextEditor={setTextEditor}/>
+                    {textEditor ?
+                        <Editor value={value} setValue={setValue}/> :
+                        <CodeEditor  value={value} setValue={setValue}/>
+                    }
                 </>
                 :
                 <Auth setToken={setToken} user={user} setUser={setUser} />
