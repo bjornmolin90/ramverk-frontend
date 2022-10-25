@@ -10,8 +10,8 @@ import graphqlModel from './models/graphql';
 import { io } from "socket.io-client";
 
 let sendToSocket = false;
-/* const url = "https://js-ramverk-editor-bjmo21.azurewebsites.net"; */
-const url = "http://localhost:1337";
+const url = "https://js-ramverk-editor-bjmo21.azurewebsites.net";
+/* const url = "http://localhost:1337"; */
 
 function changeSendToSocket(value) {
     sendToSocket = value;

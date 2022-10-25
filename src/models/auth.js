@@ -1,5 +1,5 @@
-/* const url = "https://js-ramverk-editor-bjmo21.azurewebsites.net"; */
-const url = "http://localhost:1337";
+const url = "https://js-ramverk-editor-bjmo21.azurewebsites.net";
+/* const url = "http://localhost:1337"; */
 
 
 const auth = {

@@ -9,8 +9,8 @@ import NewWindow from 'react-new-window';
 import { Buffer } from "buffer";
 import SendGrid from "./SendGrid";
 
-/* const url = "https://js-ramverk-editor-bjmo21.azurewebsites.net"; */
-const url = "http://localhost:1337";
+const url = "https://js-ramverk-editor-bjmo21.azurewebsites.net";
+/* const url = "http://localhost:1337"; */
 
 function Toolbar( props ) {
     const [docName, setDocName] = useState("");
