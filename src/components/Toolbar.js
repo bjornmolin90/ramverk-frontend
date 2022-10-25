@@ -7,12 +7,15 @@ import Pdf from "react-to-pdf";
 import parse from 'html-react-parser';
 import NewWindow from 'react-new-window';
 import { Buffer } from "buffer";
-/* import SendGrid from "./SendGrid"; */
+import SendGrid from "./SendGrid";
 
+/* const url = "https://js-ramverk-editor-bjmo21.azurewebsites.net"; */
+const url = "http://localhost:1337";
 
 function Toolbar( props ) {
     const [docName, setDocName] = useState("");
     const [popup, setPopUp] = useState(false);
+    const [email, setEmail] = useState("");
     const ref = React.createRef();
     const content = props.currentDoc[0]?.content ? props.currentDoc[0].content : "";
 
@@ -31,7 +34,7 @@ function Toolbar( props ) {
     }
 
     async function addUser(event) {
-        if (event.target.value !== "-99" && "_id" in props.currentDoc) {
+        if (event.target.value !== "-99" && "_id" in props.currentDoc[0]) {
             await docsModel.addUser({id: props.currentDoc[0]._id, user: event.target.value});
         }
     }
@@ -109,19 +112,29 @@ function Toolbar( props ) {
             });
     }
 
+    async function sendMail(msg) {
+        if (props.currentDoc instanceof Array) {
+            await docsModel.addUser({id: props.currentDoc[0]._id, user: email});
+        }
+        await fetch(`${url}/user/mail`, {
+            body: JSON.stringify(msg),
+            headers: {
+                'content-type': 'application/json'
+            },
+            method: 'POST'
+        });
+    }
+
 
     return (
         <>
-            {/* <SendGrid currentDoc={props.currentDoc} /> */}
             <PdfView/>
             <div className="toolbar">
                 <div className="create">
                     <IoCreateOutline className="createIcon" onClick={create} />
-                </div>
-                <div>
+
                     <FaRegSave className="saveIcon" onClick={save} />
-                </div>
-                <div>
+
                     <FaFilePdf className="saveIcon" onClick={() => showPdf(true)} />
                 </div>
                 <div>
@@ -144,7 +157,7 @@ function Toolbar( props ) {
                     <select
                         onChange={addUser}
                     >
-                        <option value="-99" key="0">Choose a user to give permission</option>
+                        <option value="-99" key="0">User to give permission</option>
                         {props.users.map((user, index) => <option value={user.email}
                             key={index}>{user.email}</option>)}
                     </select>
@@ -155,12 +168,16 @@ function Toolbar( props ) {
                 <div>
                     {props.textEditor ? "" : <button onClick={execute} >Execute</button>}
                 </div>
-                <span>
-                    Permitted users: {
+                <div className="permittedUsers">
+                    <strong>Permitted users:</strong><br></br> {
                         props.permittedUsers instanceof Object ?
-                            props.permittedUsers.doc.users.join(", ") : "None"
+                            props.permittedUsers.doc.users.join(" ") : "None"
                     }
-                </span>
+                </div>
+                <div>
+                    {<SendGrid currentDoc={props.currentDoc} sendMail={sendMail}
+                        email={email} setEmail={setEmail} />}
+                </div>
             </div>
         </>
     );

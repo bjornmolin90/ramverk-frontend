@@ -2,8 +2,9 @@
     width: 100%;
     background-color: #f6f6f6;
     display: flex;
-    gap: 20px;
-    padding: 20px;
+    gap: 30px;
+    padding: 20px 0px;
+    max-width: 100%;
 }
 
 .createIcon {
@@ -22,4 +23,8 @@
 
 .pdfView {
     background-color: white;
+}
+
+.permittedUsers {
+    width: 220px;
 }

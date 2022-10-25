@@ -40,11 +40,11 @@ export default function Login(props) {
                 <h1>Dokumenthanteraren</h1>
                 <div>
                     <div>
-                        <input type="email" name="email"
+                        <input type="email" name="email" data-testid="authEmail"
                             className="inputField" placeholder='email' onChange={changeHandler}/>
                     </div>
                     <div>
-                        <input type="password" name="password"
+                        <input type="password" name="password" data-testid="authPassword"
                             className="inputField" placeholder="password" onChange={changeHandler}/>
                     </div>
                 </div>

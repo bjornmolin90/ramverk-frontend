@@ -2,6 +2,7 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
 import Editor from '../../components/Editor';
+import 'jest-canvas-mock';
 
 let value = "This is a test";
 const setValue = () => false;
